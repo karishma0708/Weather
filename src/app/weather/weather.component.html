@@ -1,0 +1,78 @@
+
+<div class="search"><!--Search start-->
+    <form #form="ngForm" (submit)="onSubmit()">
+        <input type="text" placeholder="search city" name="city" [(ngModel)]="cityName">
+    </form>
+    <div class="error-message" *ngIf="errorMessage" [ngClass]="{ 'success-message': isSuccess, 'error-message': !isSuccess }">{{ errorMessage }}</div>
+
+</div><!--search ends-->
+
+<div class="container" *ngIf="myWeather"><!--container-->
+
+
+    <div class="upperdata"><!--ud start-->
+        <img src="../assets/hot.jpg" *ngIf="myWeather.main.temp > 15">
+        <img src="../assets/cold.jpg" *ngIf="myWeather.main.temp  <= 15">
+  
+          <div class="weatherdata"><!--weather data starts-->
+              <div class="location">{{myWeather.name}}</div>
+              <div class="temperature">{{myWeather.main.temp| number:'1.0-0'}}°C</div>
+          </div><!--weather data ends-->
+    </div><!--ud end-->
+  
+  
+    <div class="lowerdata"><!--ld starts-->
+        <div class="moreinfolabel"><!--more info label starts-->
+          More Information
+        </div><!--more info label ends-->
+  
+        <div class="moreinfocontainer"><!--more info container starts-->
+            <div class="infoblock"><!--info block start-->
+                <div class="infoblocklabel"><!--info block label starts-->
+                    <img src="../assets/min.png">
+                    <span>min</span>
+                </div><!--info block label ends-->
+                <div class="infoblockvalue"><!--info block value starts-->
+                    {{myWeather.main.temp_min |number:'1.0-0'}}°C
+                </div><!--info block value ends-->
+            </div><!--info block end-->
+  
+  
+            <div class="infoblock"><!--info block start-->
+              <div class="infoblocklabel"><!--info block label starts-->
+                  <img src="../assets/temo.png">
+                  <span>max</span>
+              </div><!--info block label ends-->
+              <div class="infoblockvalue"><!--info block value starts-->
+                  {{myWeather.main.temp_max | number:'1.0-0'}}°C
+              </div><!--info block value ends-->
+          </div><!--info block end-->
+  
+          <div class="infoblock"><!--info block start-->
+            <div class="infoblocklabel"><!--info block label starts-->
+                <img src="../assets/humidty.png">
+                <span>humdity</span>
+            </div><!--info block label ends-->
+            <div class="infoblockvalue"><!--info block value starts-->
+               {{myWeather.main.humidity}}%
+            </div><!--info block value ends-->
+        </div><!--info block end-->
+  
+        <div class="infoblock"><!--info block start-->
+          <div class="infoblocklabel"><!--info block label starts-->
+              <img src="../assets/wind.jpg">
+              <span>wind</span>
+          </div><!--info block label ends-->
+          <div class="infoblockvalue"><!--info block value starts-->
+            {{myWeather.wind.speed |number:'1.0-0'}}km/hr
+          </div><!--info block value ends-->
+      </div><!--info block end-->
+  
+        </div><!--more info container ends-->
+  
+    </div><!--ld ends-->
+  
+  
+  </div><!--container end-->
+
+
